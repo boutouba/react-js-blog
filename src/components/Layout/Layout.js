@@ -17,8 +17,9 @@ function Layout () {
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Link to="/">Login</Link>
-                            <Link to="/list-users">List users</Link>
+                            <Link to="/login">Logout</Link>
+                            <Link to="/users">List users</Link>
+                            <Link to="/user/add">Add users</Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

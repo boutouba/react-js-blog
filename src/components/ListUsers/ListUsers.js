@@ -5,8 +5,10 @@ import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
+import { useNavigate } from "react-router-dom";
 
 const ListUsers = () => {
+    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
 
     const getUsers = () => {
@@ -21,14 +23,16 @@ const ListUsers = () => {
 
     useEffect(() => {
         getUsers();
-    });
+    },[]);
 
     return (
         <div>
             <Container>
                 <Row>
                     <Col>
-                        <Button variant="primary" className="mt-lg-5 float-end">Add user</Button>
+                        <Button onClick={() => navigate("/user/add") } variant="primary"
+                        className="mt-lg-5 float-end">Add
+                        user</Button>
                     </Col>
                 </Row>
                 <Row>
