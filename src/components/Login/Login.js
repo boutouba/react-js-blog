@@ -4,8 +4,10 @@ import "./Login.css";
 
 import BackgroundImage from "../../assets/images/background.png";
 import Logo from "../../assets/images/logo.png";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
     const [inputUsername, setInputUsername] = useState("");
     const [inputPassword, setInputPassword] = useState("");
 
@@ -14,13 +16,14 @@ const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setLoading(true);
-        await delay(500);
-        console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-        if (inputUsername !== "admin" || inputPassword !== "admin") {
-            setShow(true);
-        }
-        setLoading(false);
+        navigate("/users");
+//        setLoading(true);
+//        await delay(500);
+//        console.log(`Username :${inputUsername}, Password :${inputPassword}`);
+//        if (inputUsername !== "admin" || inputPassword !== "admin") {
+//            setShow(true);
+//        }
+//        setLoading(false);
     };
 
     const handlePassword = () => {};

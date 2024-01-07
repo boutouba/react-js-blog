@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import "./ListUsers.css";
+import "./ListPosts.css";
 import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
@@ -8,29 +8,29 @@ import Col from 'react-bootstrap/Col';
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
-const ListUsers = () => {
+const ListPosts = () => {
     const navigate = useNavigate();
-    const [users, setUsers] = useState([]);
+    const [posts, setPosts] = useState([]);
 
     const removeUser = (id) => {
         axios.delete('http://localhost:8087/api/v1/user/delete/' + id)
             .then(res => {
-                getUsers();
+                getPosts();
             })
     }
 
-    const getUsers = () => {
+    const getPosts = () => {
         var options = {
         }
-        fetch('http://localhost:8087/api/v1/users', options)
+        fetch('http://localhost:8088/api/v1/posts', options)
               .then(results => results.json())
               .then(data => {
-                setUsers(data);
+                setPosts(data);
               });
     }
 
     useEffect(() => {
-        getUsers();
+        getPosts();
     },[]);
 
     return (
@@ -38,9 +38,9 @@ const ListUsers = () => {
             <Container>
                 <Row>
                     <Col>
-                        <Button onClick={() => navigate("/user/add") } variant="primary"
+                        <Button onClick={() => navigate("/post/add") } variant="primary"
                         className="mt-lg-5 float-end">Add
-                        user</Button>
+                        post</Button>
                     </Col>
                 </Row>
                 <Row>
@@ -50,19 +50,19 @@ const ListUsers = () => {
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Full name</th>
-                                <th>Username</th>
+                                <th>Title</th>
+                                <th>Content</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {users.map((col, j) =>
+                            {posts.map((col, j) =>
                               <tr>
                                   <td>{col.id}</td>
-                                  <td>{col.fullname}</td>
-                                  <td>{col.username}</td>
+                                  <td>{col.title}</td>
+                                  <td>{col.content}</td>
                                   <td>
-                                      <Link to={"/user/edit/" + col.id}><Button>Edit</Button></Link>
+                                      <Link to={"/post/edit/" + col.id}><Button>Edit</Button></Link>
                                       <Button onClick={() => removeUser(col.id)}>Delete</Button>
                                   </td>
                               </tr>
@@ -76,4 +76,4 @@ const ListUsers = () => {
     );
 };
 
-export default ListUsers;
+export default ListPosts;

@@ -8,17 +8,23 @@ import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListUsers from './components/ListUsers/ListUsers.js';
+import AddUsers from './components/AddUsers/AddUsers.js';
 import Layout from './components/Layout/Layout.js';
 import Login from './components/Login/Login.js'
 import { Route, Link, Routes, BrowserRouter, Outlet } from 'react-router-dom';
+import EditUsers from "./components/EditUsers/EditUsers";
+import ListPosts from './components/ListPosts/ListPosts.js';
 
 function App() {
     return (
         <BrowserRouter>
           <Routes>
+            <Route path="/login" index element={<Login />} />
             <Route path="/" element={<Layout />}>
-              <Route index element={<Login />} />
-              <Route path="list-users" element={<ListUsers />} />
+                <Route path="users" element={<ListUsers />} />
+                <Route path="user/add" element={<AddUsers />} />
+                <Route path="user/edit/:id" element={<EditUsers />} />
+                <Route path="posts" element={<ListPosts />} />
             </Route>
           </Routes>
         </BrowserRouter>
