@@ -21,6 +21,9 @@ function Layout () {
                             <Link to="/users">List users</Link>
                             <Link to="/user/add">Add users</Link>
                             <Link to="/posts">List posts</Link>
+                            <Link to="/types">List types</Link>
+                            <Link to="/type/add">Add type</Link>
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

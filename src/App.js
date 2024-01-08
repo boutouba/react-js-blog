@@ -14,6 +14,9 @@ import Login from './components/Login/Login.js'
 import { Route, Link, Routes, BrowserRouter, Outlet } from 'react-router-dom';
 import EditUsers from "./components/EditUsers/EditUsers";
 import ListPosts from './components/ListPosts/ListPosts.js';
+import ListTypes from "./components/ListTypes/ListTypes";
+import AddTypes from "./components/AddTypes/AddTypes";
+import EditTypes from "./components/EditTypes/EditTypes";
 
 function App() {
     return (
@@ -25,6 +28,9 @@ function App() {
                 <Route path="user/add" element={<AddUsers />} />
                 <Route path="user/edit/:id" element={<EditUsers />} />
                 <Route path="posts" element={<ListPosts />} />
+                <Route path="types" element={<ListTypes />} />
+                <Route path="type/add" element={<AddTypes />} />
+                <Route path="type/edit/:id" element={<EditTypes />} />
             </Route>
           </Routes>
         </BrowserRouter>
