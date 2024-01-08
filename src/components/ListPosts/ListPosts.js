@@ -13,7 +13,7 @@ const ListPosts = () => {
     const [posts, setPosts] = useState([]);
 
     const removeUser = (id) => {
-        axios.delete('http://localhost:8087/api/v1/user/delete/' + id)
+        axios.delete('http://localhost:8090/api/v1/user/delete/' + id)
             .then(res => {
                 getPosts();
             })
@@ -22,7 +22,7 @@ const ListPosts = () => {
     const getPosts = () => {
         var options = {
         }
-        fetch('http://localhost:8088/api/v1/posts', options)
+        fetch('http://localhost:8090/api/v1/posts', options)
               .then(results => results.json())
               .then(data => {
                 setPosts(data);

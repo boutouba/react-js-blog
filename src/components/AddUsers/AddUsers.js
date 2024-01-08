@@ -30,7 +30,7 @@ const AddUsers = () => {
            headers: {'Content-Type':'application/json'},
             "body": user
         }
-        axios.post('http://localhost:8087/api/v1/user/add', user)
+        axios.post('http://localhost:8080/api/v1/user/add', user)
               .then(res => {
                 console.log(res);
                 console.log(res.data);

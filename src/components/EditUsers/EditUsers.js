@@ -30,7 +30,7 @@ const EditUsers = () => {
            headers: {'Content-Type':'application/json'},
             "body": user
         }
-        axios.put('http://localhost:8087/api/v1/user/edit/' + id, user)
+        axios.put('http://localhost:8080/api/v1/user/edit/' + id, user)
               .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -39,7 +39,7 @@ const EditUsers = () => {
     }
 
     const getUser = () => {
-        axios.get(`http://localhost:8087/api/v1/user/${params.id}`)
+        axios.get(`http://localhost:8080/api/v1/user/${params.id}`)
             .then(res => {
                 console.log(res);
                 setId(res.data.id)
