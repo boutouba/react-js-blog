@@ -18,9 +18,12 @@ import ListTypes from "./components/ListTypes/ListTypes";
 import AddTypes from "./components/AddTypes/AddTypes";
 import AddPosts from './components/AddPosts/AddPosts.js';
 import EditTypes from "./components/EditTypes/EditTypes";
+import EditPosts from "./components/EditPosts/EditPosts";
+import AuthProvider from "./provider/authProvider";
 
 function App() {
     return (
+        <AuthProvider>
         <BrowserRouter>
           <Routes>
             <Route path="/login" index element={<Login />} />
@@ -33,9 +36,11 @@ function App() {
                 <Route path="types" element={<ListTypes />} />
                 <Route path="type/add" element={<AddTypes />} />
                 <Route path="type/edit/:id" element={<EditTypes />} />
+                <Route path="post/edit/:id" element={<EditPosts />} />
             </Route>
           </Routes>
         </BrowserRouter>
+        </AuthProvider>
     );
 }
 

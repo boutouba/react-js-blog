@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import "./AddPosts.css";
+import "./EditPosts.css";
 import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
-const AddPosts = () => {
+const EditPosts = () => {
     const navigate = useNavigate();
-
+    const params = useParams();
     const [types, setTypes] = useState([]);
+    const [id, setId] = useState("");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [type, setType] = useState("");
@@ -30,12 +31,23 @@ const AddPosts = () => {
             "headers": {'Content-Type':'application/json'},
             "body": post
         }
-        axios.post('http://localhost:8090/api/v1/post/add', post)
+        axios.put('http://localhost:8090/api/v1/post/edit/' + id, post)
               .then(res => {
                 console.log(res);
                 console.log(res.data);
                   navigate("/posts")
               })
+    }
+
+    const getPost = () => {
+        axios.get(`http://localhost:8090/api/v1/post/${params.id}`)
+            .then(res => {
+                console.log(res);
+                setId(res.data.id)
+                setTitle(res.data.title);
+                setContent(res.data.content);
+                setType(res.data.type.id);
+            })
     }
 
     const getTypes = () => {
@@ -50,6 +62,7 @@ const AddPosts = () => {
 
     useEffect(() => {
         getTypes();
+        getPost();
     },[]);
 
 
@@ -99,7 +112,7 @@ const AddPosts = () => {
                                   <Col>
                                  </Col>
                                  </Row>
-                              <Button onClick={save} variant="primary" type="submit">
+                                    <Button onClick={save} variant="primary" type="submit">
                                 Save post
                               </Button>
                             </Form>
@@ -110,4 +123,4 @@ const AddPosts = () => {
     );
 };
 
-export default AddPosts;
+export default EditPosts;
