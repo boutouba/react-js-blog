@@ -52,6 +52,7 @@ const ListPosts = () => {
                                 <th>#</th>
                                 <th>Title</th>
                                 <th>Content</th>
+                                <th>Type</th>
                                 <th>Actions</th>
                             </tr>
                             </thead>
@@ -61,6 +62,7 @@ const ListPosts = () => {
                                   <td>{col.id}</td>
                                   <td>{col.title}</td>
                                   <td>{col.content}</td>
+                                  <td>{col.type.title}</td>
                                   <td>
                                       <Link to={"/post/edit/" + col.id}><Button>Edit</Button></Link>
                                       <Button onClick={() => removeUser(col.id)}>Delete</Button>

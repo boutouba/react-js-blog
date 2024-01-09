@@ -16,6 +16,7 @@ import EditUsers from "./components/EditUsers/EditUsers";
 import ListPosts from './components/ListPosts/ListPosts.js';
 import ListTypes from "./components/ListTypes/ListTypes";
 import AddTypes from "./components/AddTypes/AddTypes";
+import AddPosts from './components/AddPosts/AddPosts.js';
 import EditTypes from "./components/EditTypes/EditTypes";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                 <Route path="users" element={<ListUsers />} />
                 <Route path="user/add" element={<AddUsers />} />
                 <Route path="user/edit/:id" element={<EditUsers />} />
+                <Route path="post/add" element={<AddPosts />} />
                 <Route path="posts" element={<ListPosts />} />
                 <Route path="types" element={<ListTypes />} />
                 <Route path="type/add" element={<AddTypes />} />
