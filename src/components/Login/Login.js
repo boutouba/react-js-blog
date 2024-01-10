@@ -17,13 +17,6 @@ const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         navigate("/users");
-//        setLoading(true);
-//        await delay(500);
-//        console.log(`Username :${inputUsername}, Password :${inputPassword}`);
-//        if (inputUsername !== "admin" || inputPassword !== "admin") {
-//            setShow(true);
-//        }
-//        setLoading(false);
     };
 
     const handlePassword = () => {};
