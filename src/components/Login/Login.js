@@ -5,6 +5,7 @@ import "./Login.css";
 import BackgroundImage from "../../assets/images/background.png";
 import Logo from "../../assets/images/logo.png";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -14,9 +15,24 @@ const Login = () => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const handleSubmit = async (event) => {
+    const login = async (event) => {
         event.preventDefault();
-        navigate("/users");
+        var user = {
+            "username": inputUsername,
+            "password": inputPassword
+        }
+        console.log(user)
+        var options = {
+            "method": "post",
+            "headers": {'Content-Type':'application/json'},
+            "body": user
+        }
+        axios.post('http://localhost:8080/api/v1/login', user)
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+                navigate("/posts")
+            })
     };
 
     const handlePassword = () => {};
@@ -33,7 +49,7 @@ const Login = () => {
             {/* Overlay */}
             <div className="sign-in__backdrop"></div>
             {/* Form */}
-            <Form className="shadow p-4 bg-white rounded" onSubmit={handleSubmit}>
+            <Form className="shadow p-4 bg-white rounded">
                 {/* Header */}
                 <img
                     className="img-thumbnail mx-auto d-block mb-2"
@@ -78,7 +94,7 @@ const Login = () => {
                     <Form.Check type="checkbox" label="Remember me" />
                 </Form.Group>
                 {!loading ? (
-                    <Button className="w-100" variant="primary" type="submit">
+                    <Button onClick={login} className="w-100" variant="primary" type="submit">
                         Log In
                     </Button>
                 ) : (
